@@ -9,6 +9,7 @@ vgcore.*
 lib/
 build/
 obj/
+bin
 
 core.so
 editor.so

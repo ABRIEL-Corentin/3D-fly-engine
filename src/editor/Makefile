@@ -12,9 +12,13 @@ SRC_DIR = src
 BUILD_DIR = obj
 
 SRC =\
-	${SRC_DIR}/init/test.cpp\
+	${SRC_DIR}/application/application.cpp\
 
 INCLUDE =\
+	-I./include/\
+	-I../core/include/\
+	-I../engine/include/\
+	-I../imgui/include/\
 
 OBJ = ${SRC:${SRC_DIR}/%${FILE_TYPE}=${BUILD_DIR}/%.o}
 OBJ_FLAGS = -g3 -O3 -W -Wall -Wextra -Werror ${INCLUDE}

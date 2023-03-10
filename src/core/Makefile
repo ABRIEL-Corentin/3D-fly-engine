@@ -15,6 +15,7 @@ SRC =\
 	${SRC_DIR}/init/main.cpp\
 
 INCLUDE =\
+	-I./include/\
 
 OBJ = ${SRC:${SRC_DIR}/%${FILE_TYPE}=${BUILD_DIR}/%.o}
 OBJ_FLAGS = -g3 -O3 -W -Wall -Wextra -Werror ${INCLUDE}

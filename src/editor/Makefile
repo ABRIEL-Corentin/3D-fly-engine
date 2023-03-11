@@ -14,6 +14,8 @@ BUILD_DIR = obj
 SRC =\
 	${SRC_DIR}/application/application.cpp\
 	${SRC_DIR}/application/editor_application.cpp\
+	${SRC_DIR}/application/windows.cpp\
+	${SRC_DIR}/application/theme.cpp\
 
 INCLUDE =\
 	-I./include/\

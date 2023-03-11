@@ -9,6 +9,7 @@
 #pragma once
 
 #include "editor/editor.hpp"
+#include "editor/application/windows.hpp"
 
 namespace Fly::Editor
 {
@@ -21,5 +22,6 @@ namespace Fly::Editor
 
         private:
             static GLFWwindow *m_window;
+            static Windows m_windows;
     };
 }

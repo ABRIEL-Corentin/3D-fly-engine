@@ -7,11 +7,13 @@
 ////////////////////////
 
 #include "editor/application/editor_application.hpp"
+#include "editor/application/theme.hpp"
 #include "engine/engine.hpp"
 
 namespace Fly::Editor
 {
     GLFWwindow *EditorApplication::m_window = nullptr;
+    Windows EditorApplication::m_windows = Windows();
 
     int EditorApplication::init()
     {
@@ -67,6 +69,8 @@ namespace Fly::Editor
         ImGui::StyleColorsDark();
         ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
+        UpdateTheme();
+
         return EXIT_SUCCESS;
     }
 
@@ -84,6 +88,22 @@ namespace Fly::Editor
         glClearColor(0.2, 0.2, 0.2, 1);
         while (!glfwWindowShouldClose(m_window)) {
             glClear(GL_COLOR_BUFFER_BIT);
+
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplGlfw_NewFrame();
+            ImGui::NewFrame();
+
+            m_windows.initDocking();
+            m_windows.drawMainMenuBar();
+            m_windows.drawToolBar();
+            m_windows.drawSceneWindow();
+            m_windows.drawConsoleWindow();
+            m_windows.drawHierarchyWindow();
+            m_windows.drawInspectorWindow();
+            m_windows.drawExplorerWindow();
+
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
             glfwSwapBuffers(m_window);
             glfwPollEvents();

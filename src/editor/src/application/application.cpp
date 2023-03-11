@@ -7,6 +7,7 @@
 ////////////////////////
 
 #include "core/application/application.hpp"
+#include "editor/application/editor_application.hpp"
 
 namespace Fly::Core
 {
@@ -18,17 +19,16 @@ namespace Fly::Core
 
     int Application::init()
     {
-        std::cout << "init" << std::endl;
-        return EXIT_SUCCESS;
+        return Editor::EditorApplication::init();
     }
 
     void Application::terminate()
     {
-        std::cout << "terminate" << std::endl;
+        Editor::EditorApplication::terminate();
     }
 
     void Application::run()
     {
-        std::cout << "run" << std::endl;
+        Editor::EditorApplication::run();
     }
 }

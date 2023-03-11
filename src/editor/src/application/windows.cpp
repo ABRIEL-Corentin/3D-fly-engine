@@ -7,6 +7,7 @@
 ////////////////////////
 
 #include "editor/application/windows.hpp"
+#include "editor/application/editor_application.hpp"
 
 namespace Fly::Editor
 {
@@ -48,6 +49,8 @@ namespace Fly::Editor
     {
         ImGui::BeginMainMenuBar();
         if (ImGui::BeginMenu("File")) {
+            if (ImGui::MenuItem("Quit", "Alt+F4"))
+                EditorApplication::quit();
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();

@@ -10,6 +10,7 @@
 
 #include "editor/editor.hpp"
 #include "editor/application/windows.hpp"
+#include "engine/engine.hpp"
 
 namespace Fly::Editor
 {
@@ -20,8 +21,14 @@ namespace Fly::Editor
             static void terminate();
             static void run();
 
+            static inline void quit();
+
         private:
             static GLFWwindow *m_window;
             static Windows m_windows;
+
+            static bool framerateLimiter(double framerate);
     };
 }
+
+#include "editor/application/inl/editor_application.inl"

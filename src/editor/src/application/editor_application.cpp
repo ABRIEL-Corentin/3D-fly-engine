@@ -26,7 +26,7 @@ namespace Fly::Editor
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        m_window = glfwCreateWindow(800, 600, "EDITOR", nullptr, nullptr);
+        m_window = glfwCreateWindow(1920, 1080, "EDITOR", nullptr, nullptr);
 
         if (!m_window) {
             std::cerr << "Error to create editor window" << std::endl;
@@ -42,7 +42,6 @@ namespace Fly::Editor
             return EXIT_FAILURE;
         }
 
-        glViewport(0, 0, 800, 600);
         IMGUI_CHECKVERSION();
 
         if (ImGui::CreateContext() == nullptr) {
@@ -85,9 +84,9 @@ namespace Fly::Editor
 
     void EditorApplication::run()
     {
-        glClearColor(0.2, 0.2, 0.2, 1);
         while (!glfwWindowShouldClose(m_window)) {
-            glClear(GL_COLOR_BUFFER_BIT);
+            if (!framerateLimiter(60))
+                continue;
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
@@ -108,5 +107,16 @@ namespace Fly::Editor
             glfwSwapBuffers(m_window);
             glfwPollEvents();
         }
+    }
+
+    bool EditorApplication::framerateLimiter(double framerate)
+    {
+        static double last_time = 0;
+        double current_time = glfwGetTime();
+
+        if (current_time - last_time < 1.0 / framerate)
+            return false;
+        last_time = current_time;
+        return true;
     }
 }

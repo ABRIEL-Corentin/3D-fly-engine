@@ -25,13 +25,16 @@ namespace Fly::Engine
             T *addComponent();
 
             template<is_base_of<Component> T>
-            T *getComponent();
+            T *getComponent(size_t index = 0);
 
             template<is_base_of<Component> T>
-            const T *getComponent() const;
+            const T *getComponent(size_t index = 0) const;
 
             template<is_removable_component<Component> T>
             void removeComponent(size_t index = 0);
+
+            template<is_base_of<Component> T>
+            bool hasComponent(size_t index = 0);
 
             inline const uuid_t &getID() const;
             inline const std::vector<Component *> &getComponents() const;

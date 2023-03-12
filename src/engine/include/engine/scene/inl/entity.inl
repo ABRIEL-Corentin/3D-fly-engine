@@ -13,27 +13,39 @@ namespace Fly::Engine
     template<is_base_of<Component> T>
     T *Entity::addComponent()
     {
-        T *component = new T();
+        T *component = nullptr;
 
+        if (std::is_base_of_v<Singular, T> && (component = getComponent<T>()))
+            return component;
+
+        component = new T();
         m_components.push_back(dynamic_cast<Component *>(component));
         return component;
     }
 
     template<is_base_of<Component> T>
-    T *Entity::getComponent()
+    T *Entity::getComponent(size_t index)
     {
-        for (auto it = m_components.begin(); it != m_components.end(); ++it)
-            if (dynamic_cast<T *>(*it))
-                return dynamic_cast<T *>(*it);
+        for (auto it = m_components.begin(); it != m_components.end(); ++it) {
+            if (dynamic_cast<T *>(*it)) {
+                if (index == 0)
+                    return dynamic_cast<T *>(*it);
+                --index;
+            }
+        }
         return nullptr;
     }
 
     template<is_base_of<Component> T>
-    const T *Entity::getComponent() const
+    const T *Entity::getComponent(size_t index) const
     {
-        for (auto it = m_components.begin(); it != m_components.end(); ++it)
-            if (dynamic_cast<const T *>(*it))
-                return dynamic_cast<const T *>(*it);
+        for (auto it = m_components.begin(); it != m_components.end(); ++it) {
+            if (dynamic_cast<const T *>(*it)) {
+                if (index == 0)
+                    return dynamic_cast<const T *>(*it);
+                --index;
+            }
+        }
         return nullptr;
     }
 
@@ -50,6 +62,19 @@ namespace Fly::Engine
                 --index;
             }
         }
+    }
+
+    template<is_base_of<Component> T>
+    bool Entity::hasComponent(size_t index)
+    {
+        for (auto it = m_components.begin(); it != m_components.end(); ++it) {
+            if (dynamic_cast<T *>(*it)) {
+                if (index == 0)
+                    return true;
+                --index;
+            }
+        }
+        return false;
     }
 
     inline const uuid_t &Entity::getID() const

@@ -14,7 +14,7 @@
 
 namespace Fly::Engine
 {
-    class Identity : public Component, public Fixed
+    class Identity : public Component, public Singular, public Fixed
     {
         public:
             Identity();

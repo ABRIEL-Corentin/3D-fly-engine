@@ -11,6 +11,7 @@
 #include "editor/editor.hpp"
 #include "editor/application/windows.hpp"
 #include "engine/engine.hpp"
+#include "engine/scene/scene.hpp"
 
 namespace Fly::Editor
 {
@@ -26,6 +27,7 @@ namespace Fly::Editor
         private:
             static GLFWwindow *m_window;
             static Windows m_windows;
+            static Engine::Scene m_scene;
 
             static bool framerateLimiter(double framerate);
     };

@@ -89,9 +89,13 @@ namespace Fly::Editor
         ImGui::End();
     }
 
-    void Windows::drawHierarchyWindow()
+    void Windows::drawHierarchyWindow(Engine::Scene &scene)
     {
+        const std::vector<Engine::Entity> &entities = scene.getEntities();
+
         ImGui::Begin("Hierarchy", nullptr, ImGuiWindowFlags_NoCollapse);
+        for (auto it = entities.begin(); it != entities.end(); ++it)
+            ImGui::Text("Entity: %lu", *it);
         ImGui::End();
     }
 

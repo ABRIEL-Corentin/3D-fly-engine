@@ -9,6 +9,7 @@
 #pragma once
 
 #include "editor/editor.hpp"
+#include "engine/scene/scene.hpp"
 
 namespace Fly::Editor
 {
@@ -24,7 +25,7 @@ namespace Fly::Editor
             void drawToolBar();
             void drawSceneWindow();
             void drawConsoleWindow();
-            void drawHierarchyWindow();
+            void drawHierarchyWindow(Engine::Scene &scene);
             void drawInspectorWindow();
             void drawExplorerWindow();
 

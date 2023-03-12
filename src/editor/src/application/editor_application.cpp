@@ -14,6 +14,7 @@ namespace Fly::Editor
 {
     GLFWwindow *EditorApplication::m_window = nullptr;
     Windows EditorApplication::m_windows = Windows();
+    Engine::Scene EditorApplication::m_scene = Engine::Scene();
 
     int EditorApplication::init()
     {
@@ -70,6 +71,11 @@ namespace Fly::Editor
 
         UpdateTheme();
 
+        m_scene.createEntity();
+        m_scene.createEntity();
+        m_scene.createEntity();
+        m_scene.createEntity();
+
         return EXIT_SUCCESS;
     }
 
@@ -97,7 +103,7 @@ namespace Fly::Editor
             m_windows.drawToolBar();
             m_windows.drawSceneWindow();
             m_windows.drawConsoleWindow();
-            m_windows.drawHierarchyWindow();
+            m_windows.drawHierarchyWindow(m_scene);
             m_windows.drawInspectorWindow();
             m_windows.drawExplorerWindow();
 

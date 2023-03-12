@@ -8,6 +8,7 @@
 
 #include "editor/application/windows.hpp"
 #include "editor/application/editor_application.hpp"
+#include "engine/component/components/identity.hpp"
 
 namespace Fly::Editor
 {
@@ -91,11 +92,11 @@ namespace Fly::Editor
 
     void Windows::drawHierarchyWindow(Engine::Scene &scene)
     {
-        const std::vector<Engine::Entity> &entities = scene.getEntities();
+        const std::vector<Engine::Entity *> &entities = scene.getEntities();
 
         ImGui::Begin("Hierarchy", nullptr, ImGuiWindowFlags_NoCollapse);
         for (auto it = entities.begin(); it != entities.end(); ++it)
-            ImGui::Text("Entity: %lu", *it);
+            ImGui::Text((*it)->getComponent<Engine::Identity>()->getLabel().c_str());
         ImGui::End();
     }
 

@@ -24,7 +24,7 @@ INCLUDE =\
 	-I../imgui/include/\
 
 OBJ = ${SRC:${SRC_DIR}/%${FILE_TYPE}=${BUILD_DIR}/%.o}
-OBJ_FLAGS = -g3 -O3 -W -Wall -Wextra -Werror ${INCLUDE}
+OBJ_FLAGS = -g3 -O3 -W -Wall -Wextra -Werror -std=c++20 ${INCLUDE}
 BIN_FLAGS =
 NAME = editor.so
 

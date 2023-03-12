@@ -10,7 +10,7 @@
 
 namespace Fly::Engine
 {
-    inline const std::vector<Entity> &Scene::getEntities() const
+    inline const std::vector<Entity *> &Scene::getEntities() const
     {
         return m_entities;
     }

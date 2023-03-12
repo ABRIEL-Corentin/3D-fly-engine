@@ -13,13 +13,16 @@ BUILD_DIR = obj
 
 SRC =\
 	${SRC_DIR}/scene/scene.cpp\
+	${SRC_DIR}/scene/entity.cpp\
 	${SRC_DIR}/system/uuid.cpp\
+	${SRC_DIR}/component/component.cpp\
+	${SRC_DIR}/component/components/identity.cpp\
 
 INCLUDE =\
 	-I./include/\
 
 OBJ = ${SRC:${SRC_DIR}/%${FILE_TYPE}=${BUILD_DIR}/%.o}
-OBJ_FLAGS = -g3 -O3 -W -Wall -Wextra -Werror ${INCLUDE}
+OBJ_FLAGS = -g3 -O3 -W -Wall -Wextra -Werror -std=c++20 ${INCLUDE}
 BIN_FLAGS =
 NAME = engine.so
 

@@ -9,6 +9,7 @@
 #include "editor/application/editor_application.hpp"
 #include "editor/application/theme.hpp"
 #include "engine/engine.hpp"
+#include "engine/component/components/identity.hpp"
 
 namespace Fly::Editor
 {
@@ -35,6 +36,7 @@ namespace Fly::Editor
             return EXIT_FAILURE;
         }
         glfwMakeContextCurrent(m_window);
+        glfwSwapInterval(0);
 
         if (glewInit() != GLEW_OK) {
             std::cerr << "Error to ini glew" << std::endl;
@@ -71,10 +73,10 @@ namespace Fly::Editor
 
         UpdateTheme();
 
-        m_scene.createEntity();
-        m_scene.createEntity();
-        m_scene.createEntity();
-        m_scene.createEntity();
+        m_scene.createEntity("Entity 1");
+        m_scene.createEntity("Entity 2");
+        m_scene.createEntity("Entity 3");
+        m_scene.createEntity("Entity 4");
 
         return EXIT_SUCCESS;
     }
@@ -90,6 +92,9 @@ namespace Fly::Editor
 
     void EditorApplication::run()
     {
+        std::cout << std::fixed;
+        std::cout << std::setprecision(3);
+
         while (!glfwWindowShouldClose(m_window)) {
             if (!framerateLimiter(60))
                 continue;
@@ -113,6 +118,7 @@ namespace Fly::Editor
             glfwSwapBuffers(m_window);
             glfwPollEvents();
         }
+        std::cout << std::endl;
     }
 
     bool EditorApplication::framerateLimiter(double framerate)
@@ -122,6 +128,7 @@ namespace Fly::Editor
 
         if (current_time - last_time < 1.0 / framerate)
             return false;
+        std::cout << "\rFPS: " << 1 / (current_time - last_time) << std::flush;
         last_time = current_time;
         return true;
     }

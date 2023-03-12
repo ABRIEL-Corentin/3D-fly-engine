@@ -11,6 +11,7 @@
 #include "engine/engine.hpp"
 #include "engine/system/uuid.hpp"
 #include "engine/component/component.hpp"
+#include "engine/component/modifiers.hpp"
 #include "engine/system/concepts.hpp"
 
 namespace Fly::Engine
@@ -34,7 +35,7 @@ namespace Fly::Engine
             void removeComponent(size_t index = 0);
 
             template<is_base_of<Component> T>
-            bool hasComponent(size_t index = 0);
+            bool hasComponent(size_t index = 0) const;
 
             inline const uuid_t &getID() const;
             inline const std::vector<Component *> &getComponents() const;

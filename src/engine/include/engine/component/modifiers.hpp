@@ -9,16 +9,22 @@
 #pragma once
 
 #include "engine/engine.hpp"
+#include "engine/system/concepts.hpp"
 
 namespace Fly::Engine
 {
+    class Entity;
+    class Component;
+
     class Fixed
     { };
 
     class Singular
     { };
 
-    // TODO: required multiple types of components
-    class Required
-    { };
+    class RequiredBase
+    {
+        public:
+            virtual bool check(const Entity *) { return false; }
+    };
 }

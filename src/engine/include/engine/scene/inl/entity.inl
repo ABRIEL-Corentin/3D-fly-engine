@@ -19,6 +19,12 @@ namespace Fly::Engine
             return component;
 
         component = new T();
+
+        if (std::is_base_of_v<RequiredBase, T> && !dynamic_cast<RequiredBase *>(component)->check(this)) {
+            delete component;
+            return nullptr;
+        }
+
         m_components.push_back(dynamic_cast<Component *>(component));
         return component;
     }
@@ -65,7 +71,7 @@ namespace Fly::Engine
     }
 
     template<is_base_of<Component> T>
-    bool Entity::hasComponent(size_t index)
+    bool Entity::hasComponent(size_t index) const
     {
         for (auto it = m_components.begin(); it != m_components.end(); ++it) {
             if (dynamic_cast<T *>(*it)) {

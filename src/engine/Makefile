@@ -17,6 +17,7 @@ SRC =\
 	${SRC_DIR}/system/uuid.cpp\
 	${SRC_DIR}/component/component.cpp\
 	${SRC_DIR}/component/components/identity.cpp\
+	${SRC_DIR}/component/components/transform.cpp\
 
 INCLUDE =\
 	-I./include/\

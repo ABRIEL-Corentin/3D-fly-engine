@@ -9,10 +9,11 @@
 #pragma once
 
 #include "engine/engine.hpp"
-#include "engine/component/modifiers.hpp"
 
 namespace Fly::Engine
 {
+    class Fixed;
+
     template<class CLASS, class BASE>
     concept is_base_of =
         std::is_base_of_v<BASE, CLASS> &&

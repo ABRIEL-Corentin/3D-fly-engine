@@ -9,7 +9,7 @@
 #include "editor/application/editor_application.hpp"
 #include "editor/application/theme.hpp"
 #include "engine/engine.hpp"
-#include "engine/component/components/identity.hpp"
+#include "engine/component/components/transform.hpp"
 
 namespace Fly::Editor
 {
@@ -73,7 +73,9 @@ namespace Fly::Editor
 
         UpdateTheme();
 
-        m_scene.createEntity("Entity 1");
+        Engine::Entity *entity = m_scene.createEntity("Entity 1");
+        entity->addComponent<Engine::Transform>()->getPosition();
+
         m_scene.createEntity("Entity 2");
         m_scene.createEntity("Entity 3");
         m_scene.createEntity("Entity 4");

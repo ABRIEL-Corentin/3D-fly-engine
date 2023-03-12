@@ -34,6 +34,8 @@ namespace Fly::Engine
             void removeComponent(size_t index = 0);
 
             inline const uuid_t &getID() const;
+            inline const std::vector<Component *> &getComponents() const;
+            inline std::vector<Component *> &getComponents();
 
         private:
             uuid_t m_id;

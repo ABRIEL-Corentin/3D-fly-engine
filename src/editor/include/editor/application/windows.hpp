@@ -26,7 +26,7 @@ namespace Fly::Editor
             void drawSceneWindow();
             void drawConsoleWindow();
             void drawHierarchyWindow(Engine::Scene &scene);
-            void drawInspectorWindow();
+            void drawInspectorWindow(Engine::Entity *entity);
             void drawExplorerWindow();
 
         private:

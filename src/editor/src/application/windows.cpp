@@ -93,16 +93,29 @@ namespace Fly::Editor
     void Windows::drawHierarchyWindow(Engine::Scene &scene)
     {
         const std::vector<Engine::Entity *> &entities = scene.getEntities();
+        const Engine::Entity *entity_selected = scene.getEntitySelected();
 
         ImGui::Begin("Hierarchy", nullptr, ImGuiWindowFlags_NoCollapse);
+        if (ImGui::IsWindowHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+            scene.selectEntity(nullptr);
         for (auto it = entities.begin(); it != entities.end(); ++it)
-            ImGui::Text((*it)->getComponent<Engine::Identity>()->getLabel().c_str());
+            if (ImGui::Selectable((*it)->getComponent<Engine::Identity>()->getLabel().c_str(), entity_selected == *it))
+                scene.selectEntity(*it);
         ImGui::End();
     }
 
-    void Windows::drawInspectorWindow()
+    void Windows::drawInspectorWindow(Engine::Entity *entity)
     {
+        std::vector<Engine::Component *> &components = entity->getComponents();
+
         ImGui::Begin("Inspector", nullptr, ImGuiWindowFlags_NoCollapse);
+        if (entity) {
+            ImGui::Text(entity->getComponent<Engine::Identity>()->getLabel().c_str());
+            ImGui::Separator();
+            for (auto it = components.begin(); it != components.end(); ++it) {
+                ImGui::Text("Component");
+            }
+        }
         ImGui::End();
     }
 

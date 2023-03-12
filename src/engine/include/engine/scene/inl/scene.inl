@@ -14,4 +14,19 @@ namespace Fly::Engine
     {
         return m_entities;
     }
+
+    inline void Scene::selectEntity(Entity *entity)
+    {
+        m_entity_selected = entity;
+    }
+
+    inline const Entity *Scene::getEntitySelected() const
+    {
+        return m_entity_selected;
+    }
+
+    inline Entity *Scene::getEntitySelected()
+    {
+        return m_entity_selected;
+    }
 }

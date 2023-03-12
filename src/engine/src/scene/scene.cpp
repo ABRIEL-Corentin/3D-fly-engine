@@ -12,7 +12,8 @@
 namespace Fly::Engine
 {
     Scene::Scene()
-        : m_entities(std::vector<Entity *>())
+        : m_entities(std::vector<Entity *>()),
+          m_entity_selected(nullptr)
     { }
 
     Scene::~Scene()
@@ -23,14 +24,8 @@ namespace Fly::Engine
 
     Entity *Scene::createEntity(const std::string &label)
     {
-        // Entity *entity = new Entity();
-
-        // entity->addComponent<Identity>()->setLabel(label);
-        // m_entities.push_back(std::make_unique<Entity>())->addComponent<Identity>()->setLabel(label);
         m_entities.push_back(new Entity());
         m_entities.back()->addComponent<Identity>()->setLabel(label);
-        // m_entities.emplace(m_entities.begin());
         return m_entities.back();
-        // return *entity;
     }
 }

@@ -19,11 +19,16 @@ namespace Fly::Engine
             Scene();
             ~Scene();
 
+
             Entity *createEntity(const std::string &label);
             inline const std::vector<Entity *> &getEntities() const;
+            inline void selectEntity(Entity *entity);
+            inline const Entity *getEntitySelected() const;
+            inline Entity *getEntitySelected();
 
         private:
             std::vector<Entity *> m_entities;
+            Entity *m_entity_selected;
     };
 }
 

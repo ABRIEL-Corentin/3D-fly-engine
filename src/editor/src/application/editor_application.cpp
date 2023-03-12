@@ -109,7 +109,7 @@ namespace Fly::Editor
             m_windows.drawSceneWindow();
             m_windows.drawConsoleWindow();
             m_windows.drawHierarchyWindow(m_scene);
-            m_windows.drawInspectorWindow();
+            m_windows.drawInspectorWindow(m_scene.getEntitySelected());
             m_windows.drawExplorerWindow();
 
             ImGui::Render();

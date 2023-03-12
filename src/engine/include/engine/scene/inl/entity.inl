@@ -10,11 +10,6 @@
 
 namespace Fly::Engine
 {
-    inline const uuid_t &Entity::getID() const
-    {
-        return m_id;
-    }
-
     template<is_base_of<Component> T>
     T *Entity::addComponent()
     {
@@ -55,5 +50,20 @@ namespace Fly::Engine
                 --index;
             }
         }
+    }
+
+    inline const uuid_t &Entity::getID() const
+    {
+        return m_id;
+    }
+
+    inline const std::vector<Component *> &Entity::getComponents() const
+    {
+        return m_components;
+    }
+
+    inline std::vector<Component *> &Entity::getComponents()
+    {
+        return m_components;
     }
 }
